@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fract4Work - Your Experience is Your Superpower</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            & img {
+                height: 4rem;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: rgb(48, 48, 48);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f1c40f;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4980a8 0%, #b65050 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff10" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #f1c40f, #f39c12);
+            color: #333;
+            box-shadow: 0 10px 30px rgba(241, 196, 15, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(241, 196, 15, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #333;
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4980a8;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #b65050 0%, #df8484 100%);
+            color: white;
+        }
+
+        .problem-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .problem h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .problem-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .problem-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 1.1rem;
+        }
+
+        .problem-list li:before {
+            content: '⚠️';
+            margin-right: 1rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #4980a8 0%, #69bbf7 100%);
+            color: white;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .solution-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .solution-card p {
+            opacity: 0.9;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #4980a8, #69bbf7);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #4980a8 0%, #69bbf7 100%);
+            color: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured {
+            background: white;
+            color: #333;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.1);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+            text-align: center;
+            color: #333;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .email-capture {
+            max-width: 500px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-capture input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .email-capture button {
+            padding: 15px 30px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .email-capture button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .problem-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .email-capture {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="/images/f4w.png" alt="">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your Experience is Your Superpower</h1>
+                <p class="subtitle">Age is not a barrier. It's your competitive advantage.</p>
+                <p class="tagline">Join thousands of 40+ professionals who refuse to be sidelined by ageism and are building thriving fractional careers</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Join the Movement</a>
+                    <a href="#" class="btn btn-secondary">Watch Our Story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">64%</div>
+                    <div class="stat-label">of workers 50+ face age discrimination</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24%</div>
+                    <div class="stat-label">longer job search for 40+ professionals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">78%</div>
+                    <div class="stat-label">of companies miss out on experienced talent</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$850B</div>
+                    <div class="stat-label">lost productivity due to ageism annually</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <div class="problem-content">
+                <div>
+                    <h2>The Hidden Crisis</h2>
+                    <p>While companies struggle to find experienced talent, millions of seasoned professionals are being overlooked, undervalued, and pushed to the sidelines.</p>
+                    <ul class="problem-list">
+                        <li>Traditional job boards favor younger candidates</li>
+                        <li>Networking events don't cater to experienced professionals</li>
+                        <li>Skills gaps widen without proper training opportunities</li>
+                        <li>Fractional work opportunities are scattered and hard to find</li>
+                        <li>Companies miss out on decades of expertise</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>But here's the truth...</h3>
+                    <p style="font-size: 1.3rem; font-weight: 300; margin-top: 2rem;">
+                        Your 20+ years of experience isn't outdated. It's exactly what the modern workforce needs. You've weathered economic storms, led teams through change, and built solutions that last.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="solution">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Introducing Fract4Work</h2>
+            <p style="text-align: center; font-size: 1.3rem; margin-bottom: 3rem;">The first platform designed specifically for experienced professionals who want to work on their terms</p>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <h3>🎯 Fractional Opportunities</h3>
+                    <p>Connect with companies seeking your specific expertise for project-based, part-time, or consulting roles</p>
+                </div>
+                <div class="solution-card">
+                    <h3>🚀 Skills Acceleration</h3>
+                    <p>Master AI, SQL, CRM, ERP, and other modern tools with training designed for experienced professionals</p>
+                </div>
+                <div class="solution-card">
+                    <h3>🤝 Expert Network</h3>
+                    <p>Connect with mentors, peers, and industry leaders who understand your journey</p>
+                </div>
+                <div class="solution-card">
+                    <h3>📈 Personal Branding</h3>
+                    <p>Showcase your expertise and build your professional brand for the modern workforce</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Everything You Need to Thrive</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Curated Job Marketplace</h3>
+                    <p>Access fractional, project-based, and consulting opportunities from companies that value experience. No more competing with 25-year-olds for entry-level positions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Skills Training Hub</h3>
+                    <p>Stay current with AI, automation, and digital tools through courses designed for experienced professionals. Learn at your pace, apply immediately.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌟</div>
+                    <h3>Personal Brand Builder</h3>
+                    <p>Create compelling profiles that highlight your decades of experience. Show companies why seasoned professionals are their secret weapon.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Mentorship Network</h3>
+                    <p>Connect with other experienced professionals, share insights, and get guidance from those who've successfully navigated career transitions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Market Intelligence</h3>
+                    <p>Understand market rates, trending skills, and industry demands to position yourself competitively in the fractional economy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Career Acceleration</h3>
+                    <p>Tools and resources to transition from traditional employment to fractional work, consulting, or entrepreneurship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Choose Your Path</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Explorer</h3>
+                    <div class="price">Free</div>
+                    <ul style="text-align: left; margin: 2rem 0;">
+                        <li>✓ Basic job search access</li>
+                        <li>✓ Community forum</li>
+                        <li>✓ 1 skills assessment</li>
+                        <li>✓ Basic profile creation</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">$29<span>/month</span></div>
+                    <ul style="text-align: left; margin: 2rem 0;">
+                        <li>✓ Everything in Explorer</li>
+                        <li>✓ Premium job opportunities</li>
+                        <li>✓ All skills training courses</li>
+                        <li>✓ 1-on-1 mentorship sessions</li>
+                        <li>✓ Advanced profile features</li>
+                        <li>✓ Direct company connections</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Most Popular</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Executive</h3>
+                    <div class="price">$99<span>/month</span></div>
+                    <ul style="text-align: left; margin: 2rem 0;">
+                        <li>✓ Everything in Professional</li>
+                        <li>✓ Executive-level opportunities</li>
+                        <li>✓ Personal brand consulting</li>
+                        <li>✓ Weekly mentorship calls</li>
+                        <li>✓ Priority support</li>
+                        <li>✓ Custom training programs</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Go Premium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Turn Your Experience Into Your Advantage?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Join our founding members and help us build the future of work for experienced professionals</p>
+            
+            <div class="email-capture">
+                <input type="email" placeholder="Enter your email address">
+                <button>Join the Waitlist</button>
+            </div>
+            
+            <p style="margin-top: 2rem; opacity: 0.8;">Be among the first 1,000 members and get lifetime access to our Professional tier for just $19/month</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Fract4Work. Built for professionals who refuse to be sidelined by age.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Email capture functionality
+        const emailForm = document.querySelector('.email-capture');
+        const emailInput = emailForm.querySelector('input');
+        const emailButton = emailForm.querySelector('button');
+
+        emailButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            
+            if (email && email.includes('@')) {
+                // Store email in memory (since we can't use localStorage)
+                window.subscriberEmail = email;
+                emailButton.textContent = 'Thank You!';
+                emailButton.style.background = '#27ae60';
+                emailInput.value = '';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    emailButton.textContent = 'Join the Waitlist';
+                    emailButton.style.background = '#333';
+                }, 3000);
+            } else {
+                emailInput.style.border = '2px solid #e74c3c';
+                setTimeout(() => {
+                    emailInput.style.border = 'none';
+                }, 2000);
+            }
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'white';
+            } else {
+                header.style.background = 'white';
+            }
+        });
+    </script>
+</body>
+</html>
